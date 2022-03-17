@@ -7,7 +7,7 @@ $(document).ready(function () {
       .done(function (result) {
         var contentnapill = "";
         var contentnavPanes = "";
-        result.navPills.forEach((item, index) => {
+        result.navPills.forEach((item) => {
           var active = item.tabName === "tabTopClothes" ? "active" : "";
           var fade = item.tabName !== "tabTopClothes" ? "fade" : "";
           contentnapill += `
@@ -59,6 +59,7 @@ $(document).ready(function () {
     })
     return elmItem;
   }
+  //render ra danh mục lựa chọn
   function renderTabPane(tabName, arrtabPane) {
     var temArr = null;
     var elementItem = null;
@@ -116,7 +117,7 @@ $(document).ready(function () {
     var png = $(this).data("imgsrcpng");
 
     var chooseItem = new ChooseItem(id, type, name, desc, jpg, png)
-
+    //xét trường hợp trùng bộ phận mảng để push, cập nhật 
     var index = findType(chooseItem.type);
     if (index !== -1) {
       listchooseitem.arr[index] = chooseItem
@@ -126,6 +127,7 @@ $(document).ready(function () {
     }
     renderPicture(listchooseitem.arr);
   })
+  //render tổng thể
   function renderPicture(chooseItem) {
     if (chooseItem && chooseItem.length > 0) {
       chooseItem.forEach(function (item) {
@@ -152,6 +154,7 @@ $(document).ready(function () {
         }
       })
     }
+    //render ra giao diện từng bộ phận
     function renderBikiniTop(img) {
       $(".bikinitop").css({
         width: "500px",
