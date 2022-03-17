@@ -1,0 +1,62 @@
+*renderBikiniTop
+width: "500px",
+height: "500px",
+background: `url("")`,
+position: "absolute",
+top: "-9%",
+left: "-5%",
+zIndex: "3",
+transform: "scale(0.5)"
+
+*renderBikiniBottom
+width: "500px",
+height: "1000px",
+background: `url("")`,
+position: "absolute",
+top: "-30%",
+left: "-5%",
+zIndex: "2",
+transform: "scale(0.5)"
+
+*renderFeet
+width: "500px",
+height: "1000px",
+background: `url("")`,
+position: "absolute",
+bottom: "-37%",
+right: "-3.5%",
+transform: "scale(0.5)",
+zIndex: "1"
+
+*renderHandbags
+width: "500px",
+height: "1000px",
+background: `url("")`,
+position: "absolute",
+bottom: "-40%",
+right: "-3.5%",
+transform: "scale(0.5)",
+zIndex: "4"
+
+*renderNecklace
+width: "500px",
+height: "1000px",
+background: `url("")`,
+position: "absolute",
+bottom: "-40%",
+right: "-3.5%",
+transform: "scale(0.5)",
+zIndex: "4"
+
+*renderHairstyle
+width: "1000px",
+height: "1000px",
+background: `url("")`,
+position: "absolute",
+top: "-75%",
+right: "-57%",
+transform: "scale(0.15)",
+zIndex: "4"
+
+*renderBackground
+backgroundImage: `url("")`
