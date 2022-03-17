@@ -1,10 +1,10 @@
 $(document).ready(function () {
   var callData = new CallData();
+  var listchooseitem = new ListChooseItem();
   renderHTML();
   function renderHTML() {
     callData.getListData()
       .done(function (result) {
-        console.log(result.navPills)
         var contentnapill = "";
         var contentnavPanes = "";
         result.navPills.forEach((item, index) => {
@@ -53,7 +53,7 @@ $(document).ready(function () {
         <div class="card text-center">
         <img src="${item.imgSrc_jpg}"/>
         <h4><b>${item.name}</b></h4>
-        <button>Chọn</button>
+        <button data-id="${item.id}" data-type="${item.type}" data-name="${item.name}" data-desc="${item.desc}" data-imgsrcjpg="${item.imgSrc_jpg}" data-imgsrcpng="${item.imgSrc_png}" class="changeStyle">Chọn</button>
         </div>
      </div>`
     })
@@ -95,5 +95,139 @@ $(document).ready(function () {
         break;
     }
     return elementItem;
+  }
+  function findType(type) {
+    var index = -1;
+    if (listchooseitem.arr && listchooseitem.arr.length > 0) {
+      listchooseitem.arr.forEach(function (item, i) {
+        if (item.type === type) {
+          index = i;
+        }
+      })
+    }
+    return index;
+  }
+  $("body").delegate(".changeStyle", "click", function () {
+    var id = $(this).data("id");
+    var type = $(this).data("type");
+    var name = $(this).data("name");
+    var desc = $(this).data("desc");
+    var jpg = $(this).data("imgsrcjpg");
+    var png = $(this).data("imgsrcpng");
+
+    var chooseItem = new ChooseItem(id, type, name, desc, jpg, png)
+
+    var index = findType(chooseItem.type);
+    if (index !== -1) {
+      listchooseitem.arr[index] = chooseItem
+    }
+    else {
+      listchooseitem.addItem(chooseItem)
+    }
+    renderPicture(listchooseitem.arr);
+  })
+  function renderPicture(chooseItem) {
+    if (chooseItem && chooseItem.length > 0) {
+      chooseItem.forEach(function (item) {
+        if (item.type === "topclothes") {
+          renderBikiniTop(item.imgSrc_png)
+        }
+        if (item.type === "botclothes") {
+          renderBikiniBottom(item.imgSrc_png)
+        }
+        if (item.type === "shoes") {
+          renderFeet(item.imgSrc_png)
+        }
+        if (item.type === "handbags") {
+          renderHandbags(item.imgSrc_png)
+        }
+        if (item.type === "necklaces") {
+          renderNecklace(item.imgSrc_png)
+        }
+        if (item.type === "hairstyle") {
+          renderHairstyle(item.imgSrc_png)
+        }
+        if (item.type === "background") {
+          renderBackground(item.imgSrc_png)
+        }
+      })
+    }
+    function renderBikiniTop(img) {
+      $(".bikinitop").css({
+        width: "500px",
+        height: "500px",
+        background: `url(${img})`,
+        position: "absolute",
+        top: "-9%",
+        left: "-5%",
+        zIndex: "3",
+        transform: "scale(0.5)"
+      })
+    }
+    function renderBikiniBottom(img) {
+      $(".bikinibottom").css({
+        width: "500px",
+        height: "1000px",
+        background: `url(${img})`,
+        position: "absolute",
+        top: "-30%",
+        left: "-5%",
+        zIndex: "2",
+        transform: "scale(0.5)"
+      })
+    }
+    function renderFeet(img) {
+      $(".feet").css({
+        width: "500px",
+        height: "1000px",
+        background: `url(${img})`,
+        position: "absolute",
+        bottom: "-37%",
+        right: "-3.5%",
+        transform: "scale(0.5)",
+        zIndex: "1"
+      })
+    }
+    function renderHandbags(img) {
+      $(".handbag").css({
+        width: "500px",
+        height: "1000px",
+        background: `url(${img})`,
+        position: "absolute",
+        bottom: "-40%",
+        right: "-3.5%",
+        transform: "scale(0.5)",
+        zIndex: "4"
+      })
+    }
+    function renderNecklace(img) {
+      $(".necklace").css({
+        width: "500px",
+        height: "1000px",
+        background: `url(${img})`,
+        position: "absolute",
+        bottom: "-40%",
+        right: "-3.5%",
+        transform: "scale(0.5)",
+        zIndex: "4"
+      })
+    }
+    function renderHairstyle(img) {
+      $(".hairstyle").css({
+        width: "1000px",
+        height: "1000px",
+        background: `url(${img})`,
+        position: "absolute",
+        top: "-75%",
+        right: "-57%",
+        transform: "scale(0.15)",
+        zIndex: "4"
+      })
+    }
+    function renderBackground(img) {
+      $(".background").css({
+        backgroundImage: `url(${img})`
+      })
+    }
   }
 })
