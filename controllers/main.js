@@ -7,6 +7,7 @@ $(document).ready(function () {
       .done(function (result) {
         var contentnapill = "";
         var contentnavPanes = "";
+        //tạo danh mục sản phẩm
         result.navPills.forEach((item) => {
           var active = item.tabName === "tabTopClothes" ? "active" : "";
           var fade = item.tabName !== "tabTopClothes" ? "fade" : "";
@@ -44,7 +45,7 @@ $(document).ready(function () {
     })
     return temArr
   }
-  //Cấu tạo trong sản phẩm
+  //render từng sản phẩm
   function getElement(temArr) {
     var elmItem = ""
     temArr.forEach((item) => {
@@ -59,7 +60,7 @@ $(document).ready(function () {
     })
     return elmItem;
   }
-  //render ra danh mục lựa chọn
+  //render ra danh mục theo thể loại
   function renderTabPane(tabName, arrtabPane) {
     var temArr = null;
     var elementItem = null;
@@ -97,6 +98,7 @@ $(document).ready(function () {
     }
     return elementItem;
   }
+  //Tìm loại sản phẩm 
   function findType(type) {
     var index = -1;
     if (listchooseitem.arr && listchooseitem.arr.length > 0) {
